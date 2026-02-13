@@ -178,7 +178,7 @@ AWS Bedrock 为新用户提供**最高 $200 免费额度**（注册送 $100 + �
 | **总计** | **$200** |
 | 有效期 | 3 个月 |
 
-**详细教程**：查看我们的 [AWS Bedrock 免费 $200 额度完整指南](https://github.com/736773174/aws-bedrock-free-cn)，包含：
+**详细教程**：查看我们的 [Claude Code 安装 + AWS $200 白嫖完整指南](https://github.com/736773174/claude-code-free)，包含：
 - 注册 AWS 账号的完整步骤
 - 5 个任务的详细操作教程（附截图）
 - 如何在 OpenClaw 中配置 AWS Bedrock
