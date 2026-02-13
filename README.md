@@ -110,20 +110,16 @@ iwr -useb https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/ins
 
 ![选择 MiniMax OAuth](images/choose-minimax-oauth.png)
 
-#### 3. 选择服务版本
+#### 3. 选择服务版本并授权
 
 - **国内版**：国内访问更快（推荐国内用户）
 - **国际版**：适合海外用户
 
+选择后会自动打开浏览器进行 OAuth 授权，**新用户免费获得 7 天使用额度**，无需信用卡。
+
 ![选择国内版或国际版](images/choose-minimax-global-or-cn.png)
 
-#### 4. 输入 API Key
-
-粘贴你在 [MiniMax 平台](https://platform.minimax.io) 获取的 API Key
-
-> **如何获取 MiniMax API Key？** 查看下方 [方法一：免费白嫖 MiniMax](#方法一免费白嫖-minimax7天试用)
-
-#### 5. 选择聊天频道（可选）
+#### 4. 选择聊天频道（可选）
 
 OpenClaw 可以通过多种聊天工具使用，选择你常用的：
 
