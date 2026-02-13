@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 function Write-Info($msg)    { Write-Host "[信息] $msg" -ForegroundColor Cyan }
 function Write-Ok($msg)      { Write-Host "[完成] $msg" -ForegroundColor Green }
 function Write-Warn($msg)    { Write-Host "[警告] $msg" -ForegroundColor Yellow }
-function Write-Err($msg)     { Write-Host "[错误] $msg" -ForegroundColor Red; exit 1 }
+function Write-Err($msg)     { Write-Host "[错误] $msg" -ForegroundColor Red; Read-Host "按 Enter 键退出"; return }
 
 function Write-Header {
     Write-Host ""

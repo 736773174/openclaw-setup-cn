@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 function Write-Info($msg)    { Write-Host "[INFO] $msg" -ForegroundColor Cyan }
 function Write-Ok($msg)      { Write-Host "[DONE] $msg" -ForegroundColor Green }
 function Write-Warn($msg)    { Write-Host "[WARN] $msg" -ForegroundColor Yellow }
-function Write-Err($msg)     { Write-Host "[ERROR] $msg" -ForegroundColor Red; exit 1 }
+function Write-Err($msg)     { Write-Host "[ERROR] $msg" -ForegroundColor Red; Read-Host "Press Enter to exit"; return }
 
 function Write-Header {
     Write-Host ""
