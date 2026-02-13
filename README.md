@@ -234,10 +234,18 @@ AWS Bedrock 为新用户提供**最高 $200 免费额度**（注册送 $100 + �
 
 #### 8. 运行一键配置脚本
 
-拿到 Access Key 后，在终端运行：
+拿到 Access Key 后，运行一键配置脚本：
+
+**macOS / Linux：**
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/configure-aws-bedrock.sh | bash
+```
+
+**Windows（管理员 PowerShell）：**
+
+```powershell
+iwr -useb https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/configure-aws-bedrock.ps1 | iex
 ```
 
 脚本会提示你输入上一步获取的 Access Key ID 和 Secret Access Key，然后自动完成配置、重启网关并测试连接。
