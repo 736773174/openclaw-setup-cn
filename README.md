@@ -2,7 +2,7 @@
 
 <p align="center">最近更新于：2026年2月13日</p>
 
-<p align="center"><img src="images/pinche.png" alt="Claude 拼车 — 扫码加入群聊" width="600"></p>
+<p align="center"><img src="images/hero-banner.png" alt="龙虾 Claude AI 拼车 — 扫码加入群聊" width="600"></p>
 
 说实话，我之前一直想要一个能真正帮我做事的 AI 助手，后来发现了 OpenClaw（龙虾AI）。它不只是聊天工具，能直接帮你清理邮箱、管理日程、订机票，而且完全本地部署、数据不出本机。最重要的是，还能免费白嫖 MiniMax 大模型7天。配置过程也很简单，一行命令搞定，不用折腾环境。这篇教程把我踩过的坑都整理好了，照着做5分钟就能跑起来。
 
@@ -19,7 +19,7 @@
 
 * **方法二：AWS Bedrock $200（适合海外用户）**：新用户赠送 $200，免费用 Claude 3个月。查看：[AWS Bedrock](#方法二白嫖-aws-bedrock-claude)
 
-* **方法三：合租拼车（长期使用，适合国内用户）**：Claude Pro/Code 合租，14元/月起。查看：[合租拼车](#方法三通过合租拼车降低-claude-价格)
+* **方法三：合租拼车（长期使用，适合国内用户）**：Claude Pro/Code 合租，250元/月起。查看：[合租拼车](#方法三通过合租拼车降低-claude-价格适合国内用户)
 
 </blockquote>
 
@@ -263,7 +263,7 @@ curl -fsSL https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/co
 
 如果你需要长期使用 Claude，但觉得官方价格太贵（Claude Pro $20/月，Claude Code $100/月），可以通过**拼车**的方式大幅降低成本。
 
-<p align="center"><img src="images/pinche.png" alt="Claude 拼车" width="500"></p>
+<p align="center"><img src="images/hero-banner.png" alt="龙虾 Claude AI 拼车" width="500"></p>
 
 ### 什么是 Claude 拼车？
 
@@ -273,8 +273,8 @@ curl -fsSL https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/co
 
 | 项目 | 价格 | 说明 |
 |------|-----|------|
-| Claude Code 拼车 | **14元/月起** | 适合开发者，支持 OpenClaw / Claude Code |
-| Claude Pro 拼车 | **20元/月起** | 适合日常使用，网页端 Claude |
+| Claude Code 拼车 | **250元/月起** | 适合开发者，支持 OpenClaw / Claude Code |
+| Claude Pro 拼车 | **250元/月起** | 适合日常使用，网页端 Claude |
 
 **我们的优势：**
 - **极速拼车**：即刻出发，无需等待
