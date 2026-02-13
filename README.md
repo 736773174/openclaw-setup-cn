@@ -185,85 +185,137 @@ AWS Bedrock 为新用户提供**最高 $200 免费额度**（注册送 $100 + �
 - 5 个任务的详细操作教程（附截图）
 - 如何获得 $200 免费额度
 
+### IAM 权限前置条件
+
+配置 AWS Bedrock 之前，确保你的 IAM 用户/角色具有以下权限：
+
+- `bedrock:InvokeModel`
+- `bedrock:InvokeModelWithResponseStream`
+
+或者直接使用托管策略：**AmazonBedrockFullAccess**
+
+> **重要**：还需要在 [AWS Bedrock 控制台](https://console.aws.amazon.com/bedrock/home#/modelaccess) 中**启用模型访问权限**，否则即使 IAM 权限正确也无法调用模型。
+
 ### 在 OpenClaw 中配置 AWS Bedrock
 
-完成 AWS 注册和任务后，按以下步骤配置 OpenClaw：
-
-#### 1. 生成 AWS Bedrock Bearer Token
-
-1. 进入 [AWS Bedrock API Keys 控制台](https://console.aws.amazon.com/bedrock/home#/api-keys)
-2. 点击 **Create API key**
-3. 选择有效期（30 天或自定义）
-4. **复制保存** Bearer Token
-
-<!-- TODO: 添加 Bedrock API Key 截图 -->
-
-#### 2. 编辑 OpenClaw 配置文件
+#### 方式 A：一键脚本（推荐）
 
 ```bash
-nano ~/.openclaw/openclaw.json
+curl -fsSL https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/configure-aws-bedrock.sh | bash
 ```
 
-添加以下配置（如果文件已存在，合并到现有内容中）：
+脚本会自动完成以下操作：
+- 提示输入 AWS Access Key ID、Secret Access Key 和区域
+- 创建 `~/.openclaw/.env` 环境变量文件
+- 生成 `~/.openclaw/openclaw.json` 配置文件（含 4 个 Claude 模型）
+- 重启 OpenClaw Gateway
+- 测试 AWS Bedrock 连接
+
+#### 方式 B：手动配置
+
+**步骤 1：创建环境变量文件**
+
+创建 `~/.openclaw/.env`：
+
+```bash
+# AWS Bedrock Credentials
+export AWS_ACCESS_KEY_ID="你的AccessKeyID"
+export AWS_SECRET_ACCESS_KEY="你的SecretAccessKey"
+export AWS_REGION="us-west-2"
+```
+
+**步骤 2：创建 OpenClaw 配置文件**
+
+创建 `~/.openclaw/openclaw.json`：
 
 ```json
 {
-  "mode": "merge",
-  "providers": {
-    "bedrock": {
-      "baseUrl": "https://bedrock-runtime.us-east-1.amazonaws.com",
-      "apiKey": "${AWS_BEARER_TOKEN_BEDROCK}",
-      "api": "bedrock-converse-stream",
-      "auth": "api-key",
-      "authHeader": true,
-      "models": [
-        {
-          "id": "anthropic.claude-opus-4-6-v1:0",
-          "name": "Claude Opus 4.6",
-          "reasoning": true,
-          "input": ["text"],
-          "cost": {
-            "input": 0.015,
-            "output": 0.075,
-            "cacheRead": 0,
-            "cacheWrite": 0
+  "gateway": {
+    "mode": "local"
+  },
+  "models": {
+    "providers": {
+      "amazon-bedrock": {
+        "baseUrl": "https://bedrock-runtime.us-west-2.amazonaws.com",
+        "api": "bedrock-converse-stream",
+        "auth": "aws-sdk",
+        "models": [
+          {
+            "id": "global.anthropic.claude-opus-4-6-v1",
+            "name": "Claude Opus 4.6 (Bedrock)",
+            "reasoning": true,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 200000,
+            "maxTokens": 8192
           },
-          "contextWindow": 200000,
-          "maxTokens": 8192
-        }
-      ]
+          {
+            "id": "global.anthropic.claude-opus-4-5-20251001-v1:0",
+            "name": "Claude Opus 4.5 (Bedrock)",
+            "reasoning": true,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+            "name": "Claude Sonnet 4.5 (Bedrock)",
+            "reasoning": true,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+            "name": "Claude Haiku 4.5 (Bedrock)",
+            "reasoning": false,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "amazon-bedrock/global.anthropic.claude-sonnet-4-5-20250929-v1:0"
+      }
     }
   }
 }
 ```
 
-#### 3. 设置环境变量
+> **注意**：`baseUrl` 中的区域需要和 `.env` 中的 `AWS_REGION` 一致。费用设为 0 是因为使用 $200 免费额度。
 
-在 `~/.openclaw/.env` 文件中添加：
-
-```bash
-AWS_BEARER_TOKEN_BEDROCK=你的BearerToken
-```
-
-或者在 `~/.zshrc` / `~/.bashrc` 中添加：
+**步骤 3：加载环境变量并重启网关**
 
 ```bash
-export AWS_BEARER_TOKEN_BEDROCK="你的BearerToken"
+source ~/.openclaw/.env && openclaw gateway restart
 ```
 
-#### 4. 重启 OpenClaw 网关
+> **建议**：将 `source ~/.openclaw/.env` 添加到 `~/.bashrc` 或 `~/.zshrc`，避免每次手动加载。
+
+**步骤 4：验证配置**
 
 ```bash
-openclaw gateway restart
+openclaw agent --session-id test --message "Say OK" --local
 ```
 
-#### 5. 验证配置
+如果配置成功，你应该能看到模型返回 "OK" 的响应。
 
-```bash
-openclaw models status
-```
+### 可用模型一览
 
-如果配置成功，你应该能看到 `Claude Opus 4.6` 在可用模型列表中。
+| 模型 | Bedrock Model ID | 推理能力 | 推荐用途 |
+|------|-----------------|---------|---------|
+| Claude Opus 4.6 | `global.anthropic.claude-opus-4-6-v1` | 有 | 最强推理，复杂架构决策 |
+| Claude Opus 4.5 | `global.anthropic.claude-opus-4-5-20251001-v1:0` | 有 | 深度分析与研究 |
+| **Claude Sonnet 4.5（默认）** | `global.anthropic.claude-sonnet-4-5-20250929-v1:0` | 有 | 日常开发，性价比最高 |
+| Claude Haiku 4.5 | `global.anthropic.claude-haiku-4-5-20251001-v1:0` | 无 | 轻量任务，速度最快 |
 
 > **配置参考**：完整配置示例请查看 [pahud 的 Gist](https://gist.github.com/pahud/8965bfeec441225009abfa96f4751f48)
 
