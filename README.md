@@ -20,7 +20,7 @@
 
 * **方法二：AWS Bedrock $200（适合海外用户）**：新用户赠送 $200，免费用 Claude 3个月。查看：[AWS Bedrock](#方法二白嫖-aws-bedrock-claude)
 
-* **方法三：合租拼车（长期使用）**：Claude Pro/Code 合租，14元/月起。查看：[合租拼车](#方法三通过合租拼车降低-claude-价格)
+* **方法三：合租拼车（长期使用，适合国内用户）**：Claude Pro/Code 合租，14元/月起。查看：[合租拼车](#方法三通过合租拼车降低-claude-价格)
 
 </blockquote>
 
@@ -197,7 +197,7 @@ AWS Bedrock 为新用户提供 **$200 免费额度**，可以免费使用 Claude
 
 ---
 
-## 方法三：通过合租/拼车降低 Claude 价格
+## 方法三：通过合租/拼车降低 Claude 价格（适合国内用户）
 
 如果你需要长期使用 Claude，但觉得官方 API 太贵，可以通过第三方平台**合租 Claude Pro** 或 **Claude Code 订阅**，价格只有原价的 1/5 左右。
 
