@@ -114,6 +114,27 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
         }
     }
 
+    # 方式 3: 直接下载安装
+    if (-not $gitInstalled) {
+        Write-Info "正在直接下载 Git 安装包..."
+        $gitInstaller = Join-Path $env:TEMP "git-installer.exe"
+        try {
+            # 从 GitHub 获取最新 64-bit 安装包 URL
+            $releases = Invoke-RestMethod "https://api.github.com/repos/git-for-windows/git/releases/latest" -ErrorAction Stop
+            $asset = $releases.assets | Where-Object { $_.name -match "Git-.*-64-bit\.exe$" } | Select-Object -First 1
+            if ($asset) {
+                Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $gitInstaller -ErrorAction Stop
+                Write-Info "正在静默安装 Git..."
+                Start-Process -FilePath $gitInstaller -ArgumentList "/VERYSILENT", "/NORESTART", "/NOCANCEL", "/SP-", "/CLOSEAPPLICATIONS", "/RESTARTAPPLICATIONS" -Wait
+                Remove-Item $gitInstaller -Force -ErrorAction SilentlyContinue
+                $gitInstalled = $true
+                Write-Ok "Git 已通过直接下载安装"
+            }
+        } catch {
+            Write-Warn "直接下载安装失败: $_"
+        }
+    }
+
     if (-not $gitInstalled) {
         Write-Err "无法自动安装 Git。请手动下载安装：`n`n  下载地址：https://git-scm.com/download/win`n`n  安装完成后重新打开 PowerShell 运行此脚本。"
     }

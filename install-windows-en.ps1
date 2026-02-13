@@ -114,6 +114,26 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
         }
     }
 
+    # Method 3: Direct download and silent install
+    if (-not $gitInstalled) {
+        Write-Info "Downloading Git installer directly..."
+        $gitInstaller = Join-Path $env:TEMP "git-installer.exe"
+        try {
+            $releases = Invoke-RestMethod "https://api.github.com/repos/git-for-windows/git/releases/latest" -ErrorAction Stop
+            $asset = $releases.assets | Where-Object { $_.name -match "Git-.*-64-bit\.exe$" } | Select-Object -First 1
+            if ($asset) {
+                Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $gitInstaller -ErrorAction Stop
+                Write-Info "Installing Git silently..."
+                Start-Process -FilePath $gitInstaller -ArgumentList "/VERYSILENT", "/NORESTART", "/NOCANCEL", "/SP-", "/CLOSEAPPLICATIONS", "/RESTARTAPPLICATIONS" -Wait
+                Remove-Item $gitInstaller -Force -ErrorAction SilentlyContinue
+                $gitInstalled = $true
+                Write-Ok "Git installed via direct download"
+            }
+        } catch {
+            Write-Warn "Direct download failed: $_"
+        }
+    }
+
     if (-not $gitInstalled) {
         Write-Err "Could not install Git automatically. Please install manually and re-run this script:`n`n  Download: https://git-scm.com/download/win`n`n  After installing, reopen PowerShell and run this script again."
     }
