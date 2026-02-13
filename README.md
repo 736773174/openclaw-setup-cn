@@ -169,29 +169,55 @@ MiniMax 是国内领先的 AI 大模型公司，他们的 MiniMax-M2.1 模型提
 
 ## 方法二：白嫖 AWS Bedrock Claude
 
-AWS Bedrock 为新用户提供 **$200 免费额度**，可以免费使用 Claude Opus / Sonnet 大约 3 个月。这个方法适合**人在海外**的用户（需要海外信用卡和地址）。
+AWS Bedrock 为新用户提供**最高 $300 免费额度**（注册送 $100 + 完成任务送 $200），可以免费使用 Claude Opus / Sonnet 大约 3-6 个月。这个方法适合**人在海外**的用户（需要海外信用卡和地址）。
 
-### 注册 AWS Bedrock
+### 第 1 步：注册 AWS Bedrock（获得 $100）
 
 1. 前往 [AWS 注册页面](https://aws.amazon.com/)，注册新账号
 2. 绑定海外信用卡（会扣 $1 验证，之后退回）
 3. 进入 [AWS Bedrock 控制台](https://console.aws.amazon.com/bedrock/)
 4. 开通 Claude 模型访问权限（Model access）
 
-### 在 OpenClaw 中配置 AWS Bedrock
+注册完成后会自动获得 **$100 免费额度**。
 
-配置向导中选择 **AWS Bedrock**，填入：
-- AWS Access Key ID
-- AWS Secret Access Key
-- AWS Region（推荐 `us-east-1`）
+<!-- TODO: 添加 AWS Bedrock $100 额度截图 -->
+
+### 第 2 步：完成 5 个任务获得额外 $200
+
+完成以下 5 个 AWS 任务，可以额外获得 **$200 免费额度**：
+
+1. **任务 1**：创建一个 S3 存储桶
+2. **任务 2**：部署一个 Lambda 函数
+3. **任务 3**：设置 CloudWatch 监控
+4. **任务 4**：配置 IAM 角色
+5. **任务 5**：使用 Bedrock API 调用一次
+
+<!-- TODO: 添加任务完成截图 -->
+
+> **提示**：这 5 个任务都很简单，跟着 AWS 控制台的引导操作即可，总共大约 30 分钟完成。
+
+### 第 3 步：在 OpenClaw 中配置 AWS Bedrock
+
+完成注册和任务后，在 OpenClaw 配置向导中：
+
+1. 选择服务商：**AWS Bedrock**
+2. 填入配置信息：
+   - **AWS Access Key ID**（在 IAM 控制台创建）
+   - **AWS Secret Access Key**
+   - **AWS Region**（推荐 `us-east-1`）
+
+<!-- TODO: 添加 OpenClaw 配置 AWS Bedrock 截图 -->
 
 ### 免费额度说明
 
 | 项目 | 额度 |
 |------|-----|
-| 新用户赠送 | $200（3个月有效）|
-| Claude Opus 4.6 | 可用约 3 个月 |
-| Claude Sonnet 4.5 | 可用约 3 个月（更省） |
+| 注册赠送 | $100（立即可用）|
+| 完成任务赠送 | $200（完成 5 个任务后）|
+| **总计** | **$300** |
+| 有效期 | 3 个月 |
+| Claude Opus 4.6 | 可用约 3-6 个月 |
+| Claude Sonnet 4.5 | 可用约 6 个月（更省） |
 
 > **注意**：AWS Bedrock 需要海外信用卡和地址，国内用户可能无法注册。国内用户建议选择方法一（MiniMax）或方法三（合租）。
 
