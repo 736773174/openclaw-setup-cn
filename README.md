@@ -233,19 +233,17 @@ AWS Bedrock 为新用户提供**最高 $200 免费额度**（注册送 $100 + �
 
 > **重要**：还需要在 [AWS Bedrock 控制台](https://console.aws.amazon.com/bedrock/home#/modelaccess) 中**启用模型访问权限**，否则即使 IAM 权限正确也无法调用模型。
 
-### 在 OpenClaw 中配置 AWS Bedrock
+#### 8. 运行一键配置脚本
 
-拿到 Access Key 后，运行一键配置脚本：
+拿到 Access Key 后，在终端运行：
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/configure-aws-bedrock.sh | bash
 ```
 
-脚本会提示你输入上一步获取的 Access Key ID 和 Secret Access Key，然后自动完成：
-- 创建 `~/.openclaw/.env` 环境变量文件
-- 生成 `~/.openclaw/openclaw.json` 配置文件（含 4 个 Claude 模型）
-- 重启 OpenClaw Gateway
-- 测试 AWS Bedrock 连接
+脚本会提示你输入上一步获取的 Access Key ID 和 Secret Access Key，然后自动完成配置、重启网关并测试连接。
+
+![运行配置脚本](images/step7-configure-bedrock-for-openclaw.png)
 
 ### 可用模型一览
 
