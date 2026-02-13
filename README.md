@@ -5,7 +5,7 @@
 <!-- TODO: Hero 图片（中文文件名） -->
 <!-- ![2026年OpenClaw龙虾AI一键部署教学](image/OpenClaw龙虾AI一键部署教学.png) -->
 
-说实话，我之前用 Claude Code 每个月烧几百块，后来发现了 OpenClaw（龙虾AI），直接本地部署，还能免费白嫖 MiniMax 大模型7天。配置过程也很简单，一行命令搞定，不用折腾环境。这篇教程把我踩过的坑都整理好了，照着做5分钟就能跑起来。
+说实话，我之前一直在找好用的 AI 编程助手，后来发现了 OpenClaw（龙虾AI），直接本地部署，还能免费白嫖 MiniMax 大模型7天。配置过程也很简单，一行命令搞定，不用折腾环境。这篇教程把我踩过的坑都整理好了，照着做5分钟就能跑起来。
 
 <blockquote>
 
@@ -47,7 +47,7 @@
 打开终端，粘贴以下命令：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/anthropics/openclaw-minimax-setup/main/install-macos.sh | bash
+curl -fsSL https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/install-macos.sh | bash
 ```
 
 ### Windows
@@ -55,7 +55,7 @@ curl -fsSL https://raw.githubusercontent.com/anthropics/openclaw-minimax-setup/m
 以**管理员身份**打开 PowerShell，运行：
 
 ```powershell
-iwr -useb https://raw.githubusercontent.com/anthropics/openclaw-minimax-setup/main/install-windows.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/install-windows.ps1 | iex
 ```
 
 > **Windows 说明：** 脚本会自动安装 WSL2（Windows 子系统 Linux）。可能需要重启，重启后再次运行脚本即可。
@@ -185,13 +185,13 @@ openclaw skills
 ### macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/anthropics/openclaw-minimax-setup/main/uninstall-macos.sh | bash
+curl -fsSL https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/uninstall-macos.sh | bash
 ```
 
 ### Windows（管理员 PowerShell）
 
 ```powershell
-iwr -useb https://raw.githubusercontent.com/anthropics/openclaw-minimax-setup/main/uninstall-windows.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/uninstall-windows.ps1 | iex
 ```
 
 ---
