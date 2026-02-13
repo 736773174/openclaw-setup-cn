@@ -9,11 +9,18 @@
 
 <blockquote>
 
-* **方法一：免费白嫖 MiniMax 7天（适合想先体验的用户）**：MiniMax 提供7天免费试用，注册即可使用，无需信用卡。20万 token 上下文窗口，编程能力很强。查看更多：[免费白嫖 MiniMax](#方法一免费白嫖-minimax7天试用)
+### 🚀 一键安装 OpenClaw
 
-* **方法二：白嫖 AWS Bedrock Claude（适合人在海外的用户）**：AWS Bedrock 新用户赠送 $200 免费额度，可以免费使用 Claude Opus / Sonnet 3个月。查看更多：[白嫖 AWS Bedrock](#方法二白嫖-aws-bedrock-claude)
+* **macOS 用户**：复制粘贴一行命令，自动安装 Node.js + OpenClaw，5分钟搞定。查看：[macOS 安装](#一键安装)
+* **Windows 用户**：管理员运行 PowerShell，一键安装 WSL2 + OpenClaw，重启后继续。查看：[Windows 安装](#一键安装)
 
-* **方法三：通过合租/拼车降低 Claude 价格（适合长期使用的用户）**：通过第三方平台合租 Claude Pro 或 Claude Code 订阅，价格低至原价的 1/5。查看更多：[Claude 合租拼车](#方法三通过合租拼车降低-claude-价格)
+### 💰 免费白嫖大模型方案
+
+* **方法一：MiniMax 免费7天（推荐新手）**：注册即用，无需信用卡，国内直连。查看：[白嫖 MiniMax](#方法一免费白嫖-minimax7天试用)
+
+* **方法二：AWS Bedrock $200（适合海外用户）**：新用户赠送 $200，免费用 Claude 3个月。查看：[AWS Bedrock](#方法二白嫖-aws-bedrock-claude)
+
+* **方法三：合租拼车（长期使用）**：Claude Pro/Code 合租，14元/月起。查看：[合租拼车](#方法三通过合租拼车降低-claude-价格)
 
 </blockquote>
 
