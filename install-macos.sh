@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # ─────────────────────────────────────────────
-# OpenClaw + MiniMax 一键安装脚本 (macOS)
+# OpenClaw 一键部署安装脚本 (macOS)
 # ─────────────────────────────────────────────
 
 # 颜色
@@ -21,7 +21,7 @@ error()   { echo -e "${RED}[错误]${NC} $*"; exit 1; }
 header() {
   echo ""
   echo -e "${BOLD}========================================${NC}"
-  echo -e "${BOLD}  OpenClaw + MiniMax 安装器 (macOS)${NC}"
+  echo -e "${BOLD}  OpenClaw 一键部署安装器 (macOS)${NC}"
   echo -e "${BOLD}========================================${NC}"
   echo ""
 }

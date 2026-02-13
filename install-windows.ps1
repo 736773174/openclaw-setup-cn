@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────
-# OpenClaw + MiniMax 一键安装脚本 (Windows)
+# OpenClaw 一键部署安装脚本 (Windows)
 # 安装 WSL2 + Ubuntu，然后在 WSL 中设置 OpenClaw
 # ─────────────────────────────────────────────
 
@@ -13,7 +13,7 @@ function Write-Err($msg)     { Write-Host "[错误] $msg" -ForegroundColor Red; 
 function Write-Header {
     Write-Host ""
     Write-Host "========================================" -ForegroundColor White
-    Write-Host "  OpenClaw + MiniMax 安装器 (Windows)" -ForegroundColor White
+    Write-Host "  OpenClaw 一键部署安装器 (Windows)" -ForegroundColor White
     Write-Host "========================================" -ForegroundColor White
     Write-Host ""
 }
