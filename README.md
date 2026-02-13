@@ -2,8 +2,7 @@
 
 <p align="center">最近更新于：2026年2月13日</p>
 
-<!-- TODO: Hero 图片（中文文件名） -->
-<!-- ![2026年OpenClaw龙虾AI一键部署教学](image/OpenClaw龙虾AI一键部署教学.png) -->
+<p align="center"><img src="images/pinche.png" alt="Claude 拼车 — 扫码加入群聊" width="600"></p>
 
 说实话，我之前一直想要一个能真正帮我做事的 AI 助手，后来发现了 OpenClaw（龙虾AI）。它不只是聊天工具，能直接帮你清理邮箱、管理日程、订机票，而且完全本地部署、数据不出本机。最重要的是，还能免费白嫖 MiniMax 大模型7天。配置过程也很简单，一行命令搞定，不用折腾环境。这篇教程把我踩过的坑都整理好了，照着做5分钟就能跑起来。
 
@@ -260,35 +259,48 @@ curl -fsSL https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/co
 
 ---
 
-## 方法三：通过合租/拼车降低 Claude 价格（适合国内用户）
+## 方法三：通过合租拼车降低 Claude 价格（适合国内用户）
 
-如果你需要长期使用 Claude，但觉得官方 API 太贵，可以通过第三方平台**合租 Claude Pro** 或 **Claude Code 订阅**，价格只有原价的 1/5 左右。
+如果你需要长期使用 Claude，但觉得官方价格太贵（Claude Pro $20/月，Claude Code $100/月），可以通过**拼车**的方式大幅降低成本。
 
-### 什么是 Claude 合租/拼车？
+<p align="center"><img src="images/pinche.png" alt="Claude 拼车" width="500"></p>
 
-多个用户共享一个 Claude Pro 或 Claude Code 订阅账号，分摊费用。第三方平台负责管理账号和分配使用额度，每个用户都能正常使用 Claude，但价格大幅降低。
+### 什么是 Claude 拼车？
 
-### 推荐平台
+多个用户共享 Claude Pro 或 Claude Code 订阅，分摊费用。我们负责管理账号和分配使用额度，每个用户都能正常使用，价格只有原价的 **1/5** 左右。
 
-| 平台 | Claude Code 价格 | Claude Pro 价格 | 特点 |
-|------|----------------|----------------|------|
-| 星际放映厅 | 14元/月起 | 20元/月起 | 有备案，支持发票 |
-| 其他平台 | 10-30元/月 | 15-40元/月 | 价格波动大 |
+### 我们的拼车服务
 
-> **风险提示**：合租账号存在以下风险：
-> - 可能被官方封号（虽然概率较低）
-> - 平台跑路风险
-> - 使用额度限制
-> - 不适合企业/商业用途
+| 项目 | 价格 | 说明 |
+|------|-----|------|
+| Claude Code 拼车 | **14元/月起** | 适合开发者，支持 OpenClaw / Claude Code |
+| Claude Pro 拼车 | **20元/月起** | 适合日常使用，网页端 Claude |
 
-### 如何在 OpenClaw 中使用合租账号？
+**我们的优势：**
+- **极速拼车**：即刻出发，无需等待
+- **官方渠道**：安全可靠，不是黑卡
+- **封号重练**：无忧售后，封号免费换号
 
-合租平台通常提供 API Key 或 共享账号，你可以：
+### 如何加入？
 
-1. 如果提供 **API Key**：在 OpenClaw 配置向导中选择 **Anthropic**，填入平台提供的 API Key
-2. 如果提供 **共享账号**：联系平台客服，询问是否支持 OpenClaw 接入
+扫码加入 **Claude 拼车群**，或者加我微信咨询：
 
-> **我的建议**：合租适合轻度使用，如果你是重度用户或企业用途，建议选择方法二（AWS Bedrock）或直接购买 Anthropic 官方 API。
+<p align="center">
+<img src="images/my-group-wechat.JPG" alt="Claude 拼车群" width="250">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="images/my-wechat-qr.JPG" alt="加我微信" width="250">
+</p>
+<p align="center">👈 扫码加群 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 加我微信咨询 👉</p>
+
+### 如何在 OpenClaw 中使用拼车账号？
+
+拼车后你会收到一个 API Key，在 OpenClaw 中配置：
+
+1. 运行 `openclaw onboard`
+2. 选择 **Anthropic**
+3. 填入我们提供的 API Key
+
+就可以在 OpenClaw 中直接使用 Claude 了。
 
 ---
 
