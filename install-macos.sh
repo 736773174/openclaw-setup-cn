@@ -101,7 +101,7 @@ echo -e "  选择 ${BOLD}MiniMax${NC} 可获得 ${BOLD}7天免费试用${NC} —
 echo -e "  注册地址：${BLUE}https://platform.minimax.io${NC}"
 echo ""
 
-openclaw onboard --accept-risk --flow quickstart --node-manager npm --skip-skills
+openclaw onboard --accept-risk --flow quickstart --node-manager npm --skip-skills < /dev/tty
 
 echo ""
 echo -e "${GREEN}${BOLD}========================================${NC}"

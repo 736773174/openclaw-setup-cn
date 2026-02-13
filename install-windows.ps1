@@ -177,7 +177,7 @@ Write-Host "  选择 MiniMax 可获得 7天免费试用 - 无需信用卡。" -F
 Write-Host "  注册地址：https://platform.minimax.io" -ForegroundColor Cyan
 Write-Host ""
 
-wsl -d Ubuntu-24.04 -- bash -c 'export PATH="$HOME/.openclaw/bin:$PATH" && openclaw onboard --accept-risk --flow quickstart --node-manager npm --skip-skills'
+wsl -d Ubuntu-24.04 -- bash -c 'export PATH="$HOME/.openclaw/bin:$PATH" && openclaw onboard --accept-risk --flow quickstart --node-manager npm --skip-skills < /dev/tty'
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Green
