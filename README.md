@@ -63,6 +63,19 @@ OpenClaw 不只是聊天，而是真正能**帮你做事**的 AI 助手：
 
 ## 一键安装
 
+### 脚本做了什么？
+
+完全透明 — 以下是脚本的具体操作：
+
+| 步骤 | macOS | Windows |
+|------|-------|---------|
+| 1 | 检查/安装 Node.js 22+（通过 Homebrew） | 检查/安装 WSL2 + Ubuntu 24.04 |
+| 2 | 安装 OpenClaw（静默安装） | 启用 systemd + 安装 Node.js 22+ |
+| 3 | 启动配置向导 | 安装 OpenClaw + 网关守护进程 |
+| 4 | — | 启动配置向导 |
+
+脚本不会在 Homebrew (macOS) 或 WSL (Windows) 之外安装任何东西。
+
 ### macOS
 
 打开终端，粘贴以下命令：
@@ -81,18 +94,50 @@ iwr -useb https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/ins
 
 > **Windows 说明：** 脚本会自动安装 WSL2（Windows 子系统 Linux）。可能需要重启，重启后再次运行脚本即可。
 
-### 脚本做了什么？
+### 配置流程
 
-完全透明 — 以下是脚本的具体操作：
+脚本运行后会自动进入配置向导，跟着以下步骤操作即可完成 OpenClaw 部署：
 
-| 步骤 | macOS | Windows |
-|------|-------|---------|
-| 1 | 检查/安装 Node.js 22+（通过 Homebrew） | 检查/安装 WSL2 + Ubuntu 24.04 |
-| 2 | 安装 OpenClaw（静默安装） | 启用 systemd + 安装 Node.js 22+ |
-| 3 | 启动配置向导 | 安装 OpenClaw + 网关守护进程 |
-| 4 | — | 启动配置向导 |
+#### 1. 选择模型服务商
 
-脚本不会在 Homebrew (macOS) 或 WSL (Windows) 之外安装任何东西。
+选择 **MiniMax**（默认 7 天免费试用，无需信用卡）
+
+![选择 MiniMax](images/choose-minimax.png)
+
+#### 2. 选择认证方式
+
+选择 **MiniMax OAuth**
+
+![选择 MiniMax OAuth](images/choose-minimax-oauth.png)
+
+#### 3. 选择服务版本
+
+- **国内版**：国内访问更快（推荐国内用户）
+- **国际版**：适合海外用户
+
+![选择国内版或国际版](images/choose-minimax-global-or-cn.png)
+
+#### 4. 输入 API Key
+
+粘贴你在 [MiniMax 平台](https://platform.minimax.io) 获取的 API Key
+
+> **如何获取 MiniMax API Key？** 查看下方 [方法一：免费白嫖 MiniMax](#方法一免费白嫖-minimax7天试用)
+
+#### 5. 选择聊天频道（可选）
+
+OpenClaw 可以通过多种聊天工具使用，选择你常用的：
+
+- **Telegram**（推荐，国际用户首选，设置简单）
+
+  ![选择 Telegram](images/choose-telegram.png)
+
+- **飞书**（推荐，国内用户首选）
+
+  ![选择飞书](images/choose-feishu.png)
+
+- **其他频道**：WhatsApp、Discord、Slack、iMessage 等
+
+> **提示：** 可以跳过频道配置，之后通过 `openclaw configure --section channels` 添加。
 
 ---
 
@@ -100,7 +145,7 @@ iwr -useb https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/ins
 
 MiniMax 是国内领先的 AI 大模型公司，他们的 MiniMax-M2.1 模型提供**7天免费试用**，无需信用卡，注册即可使用。
 
-### 注册步骤
+### 如何获取 MiniMax API Key
 
 1. 前往 [platform.minimax.io](https://platform.minimax.io) 注册账号
 2. 在控制台找到 **API Keys**
@@ -108,18 +153,7 @@ MiniMax 是国内领先的 AI 大模型公司，他们的 MiniMax-M2.1 模型提
 
 <!-- TODO: 添加 MiniMax 注册截图 -->
 
-### 在配置向导中选择 MiniMax
-
-安装脚本运行后会自动进入配置向导，按照以下步骤操作：
-
-1. **选择服务商**：选择 **MiniMax**
-2. **认证方式**：选择 **MiniMax OAuth**
-3. **选择版本**：
-   - **国际版**：适合海外用户
-   - **国内版**：国内访问更快（推荐国内用户）
-4. **输入 API Key**：粘贴你在 MiniMax 平台获取的 API Key
-
-<!-- TODO: 添加配置向导截图 -->
+> **配置 OpenClaw 使用 MiniMax：** 运行安装脚本后，按照上方 [配置流程](#配置流程) 选择 MiniMax 并输入 API Key 即可。
 
 ### MiniMax vs Claude 能力对比
 
