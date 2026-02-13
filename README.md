@@ -68,12 +68,11 @@ OpenClaw 不只是聊天，而是真正能**帮你做事**的 AI 助手：
 
 | 步骤 | macOS | Windows |
 |------|-------|---------|
-| 1 | 检查/安装 Node.js 22+（通过 Homebrew） | 检查/安装 WSL2 + Ubuntu 24.04 |
-| 2 | 安装 OpenClaw（静默安装） | 启用 systemd + 安装 Node.js 22+ |
-| 3 | 启动配置向导 | 安装 OpenClaw + 网关守护进程 |
-| 4 | — | 启动配置向导 |
+| 1 | 检查/安装 Node.js 22+（通过 Homebrew） | 检查/安装 Node.js 22+（通过 winget / Chocolatey） |
+| 2 | 安装 OpenClaw | 安装 OpenClaw |
+| 3 | 启动配置向导 | 启动配置向导 |
 
-脚本不会在 Homebrew (macOS) 或 WSL (Windows) 之外安装任何东西。
+脚本不会在 Homebrew (macOS) 或 npm (Windows) 之外安装任何东西。
 
 ### macOS
 
@@ -85,13 +84,13 @@ curl -fsSL https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/in
 
 ### Windows
 
-以**管理员身份**打开 PowerShell，运行：
+打开 PowerShell，运行：
 
 ```powershell
 iwr -useb https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/install-windows.ps1 | iex
 ```
 
-> **Windows 说明：** 脚本会自动安装 WSL2（Windows 子系统 Linux）。可能需要重启，重启后再次运行脚本即可。
+> **Windows 说明：** 脚本会自动安装 Node.js（通过 winget 或 Chocolatey）+ OpenClaw。如果无法自动安装 Node.js，请先从 [nodejs.cn](https://nodejs.cn/download/) 手动下载安装。
 
 ### 配置流程
 
