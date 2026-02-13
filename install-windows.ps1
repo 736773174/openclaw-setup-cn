@@ -3,12 +3,10 @@
 # 安装 Node.js + OpenClaw，原生 Windows 运行
 # ─────────────────────────────────────────────
 
-$ErrorActionPreference = "Stop"
-
 function Write-Info($msg)    { Write-Host "[信息] $msg" -ForegroundColor Cyan }
 function Write-Ok($msg)      { Write-Host "[完成] $msg" -ForegroundColor Green }
 function Write-Warn($msg)    { Write-Host "[警告] $msg" -ForegroundColor Yellow }
-function Write-Err($msg)     { Write-Host "[错误] $msg" -ForegroundColor Red; Read-Host "按 Enter 键退出"; return }
+function Write-Err($msg)     { Write-Host "[错误] $msg" -ForegroundColor Red; throw $msg }
 
 function Write-Header {
     Write-Host ""
@@ -17,6 +15,8 @@ function Write-Header {
     Write-Host "========================================" -ForegroundColor White
     Write-Host ""
 }
+
+try {
 
 Write-Header
 
@@ -50,7 +50,7 @@ if ($needsNode) {
     # 方式 1: winget（Windows 11 / Windows 10 自带）
     if (-not $installed -and (Get-Command winget -ErrorAction SilentlyContinue)) {
         Write-Info "使用 winget 安装..."
-        winget install OpenJS.NodeJS.LTS --accept-package-agreements --accept-source-agreements
+        winget install OpenJS.NodeJS.LTS --accept-package-agreements --accept-source-agreements 2>$null
         if ($LASTEXITCODE -eq 0) {
             $installed = $true
             Write-Ok "Node.js 已通过 winget 安装"
@@ -60,7 +60,7 @@ if ($needsNode) {
     # 方式 2: Chocolatey
     if (-not $installed -and (Get-Command choco -ErrorAction SilentlyContinue)) {
         Write-Info "使用 Chocolatey 安装..."
-        choco install nodejs-lts -y
+        choco install nodejs-lts -y 2>$null
         if ($LASTEXITCODE -eq 0) {
             $installed = $true
             Write-Ok "Node.js 已通过 Chocolatey 安装"
@@ -69,8 +69,7 @@ if ($needsNode) {
 
     # 方式 3: 手动下载提示
     if (-not $installed) {
-        Write-Host ""
-        Write-Err "无法自动安装 Node.js。请手动安装后重新运行此脚本：`n`n  下载地址：https://nodejs.cn/download/`n  或：https://nodejs.org/en/download/`n`n  安装完成后重新打开 PowerShell 运行此脚本。"
+        Write-Err "无法自动安装 Node.js。请手动下载安装：`n`n  下载地址：https://nodejs.cn/download/`n  或：https://nodejs.org/en/download/`n`n  安装完成后重新打开 PowerShell 运行此脚本。"
     }
 
     # 刷新 PATH
@@ -101,7 +100,7 @@ try {
 }
 
 if ($needsInstall) {
-    npm install -g openclaw@latest
+    npm install -g openclaw@latest 2>&1 | Write-Host
     if ($LASTEXITCODE -ne 0) {
         Write-Err "OpenClaw 安装失败。请手动运行：npm install -g openclaw@latest"
     }
@@ -150,3 +149,12 @@ Write-Host "    2. 开始使用 OpenClaw：openclaw" -ForegroundColor Gray
 Write-Host "    3. 添加技能（可选）：openclaw configure --section skills" -ForegroundColor Gray
 Write-Host "    4. 浏览可用技能：openclaw skills" -ForegroundColor Gray
 Write-Host ""
+
+} catch {
+    Write-Host ""
+    Write-Host "[错误] 脚本执行失败: $_" -ForegroundColor Red
+    Write-Host ""
+} finally {
+    Write-Host ""
+    Read-Host "按 Enter 键关闭此窗口"
+}

@@ -2,12 +2,12 @@
 # OpenClaw AWS Bedrock 配置脚本 (Windows)
 # ─────────────────────────────────────────────
 
-$ErrorActionPreference = "Stop"
-
 function Write-Info($msg)    { Write-Host "[信息] $msg" -ForegroundColor Cyan }
 function Write-Ok($msg)      { Write-Host "[完成] $msg" -ForegroundColor Green }
 function Write-Warn($msg)    { Write-Host "[警告] $msg" -ForegroundColor Yellow }
-function Write-Err($msg)     { Write-Host "[错误] $msg" -ForegroundColor Red; Read-Host "按 Enter 键退出"; return }
+function Write-Err($msg)     { Write-Host "[错误] $msg" -ForegroundColor Red; throw $msg }
+
+try {
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor White
@@ -235,3 +235,12 @@ Write-Host "    * bedrock:InvokeModel" -ForegroundColor Yellow
 Write-Host "    * bedrock:InvokeModelWithResponseStream" -ForegroundColor Yellow
 Write-Host "    或使用托管策略：AmazonBedrockFullAccess" -ForegroundColor Yellow
 Write-Host ""
+
+} catch {
+    Write-Host ""
+    Write-Host "[错误] 脚本执行失败: $_" -ForegroundColor Red
+    Write-Host ""
+} finally {
+    Write-Host ""
+    Read-Host "按 Enter 键关闭此窗口"
+}

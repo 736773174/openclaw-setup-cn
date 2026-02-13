@@ -3,12 +3,10 @@
 # Installs Node.js + OpenClaw, runs natively
 # ─────────────────────────────────────────────
 
-$ErrorActionPreference = "Stop"
-
 function Write-Info($msg)    { Write-Host "[INFO] $msg" -ForegroundColor Cyan }
 function Write-Ok($msg)      { Write-Host "[DONE] $msg" -ForegroundColor Green }
 function Write-Warn($msg)    { Write-Host "[WARN] $msg" -ForegroundColor Yellow }
-function Write-Err($msg)     { Write-Host "[ERROR] $msg" -ForegroundColor Red; Read-Host "Press Enter to exit"; return }
+function Write-Err($msg)     { Write-Host "[ERROR] $msg" -ForegroundColor Red; throw $msg }
 
 function Write-Header {
     Write-Host ""
@@ -17,6 +15,8 @@ function Write-Header {
     Write-Host "========================================" -ForegroundColor White
     Write-Host ""
 }
+
+try {
 
 Write-Header
 
@@ -50,7 +50,7 @@ if ($needsNode) {
     # Method 1: winget (built into Windows 11 / Windows 10)
     if (-not $installed -and (Get-Command winget -ErrorAction SilentlyContinue)) {
         Write-Info "Installing via winget..."
-        winget install OpenJS.NodeJS.LTS --accept-package-agreements --accept-source-agreements
+        winget install OpenJS.NodeJS.LTS --accept-package-agreements --accept-source-agreements 2>$null
         if ($LASTEXITCODE -eq 0) {
             $installed = $true
             Write-Ok "Node.js installed via winget"
@@ -60,7 +60,7 @@ if ($needsNode) {
     # Method 2: Chocolatey
     if (-not $installed -and (Get-Command choco -ErrorAction SilentlyContinue)) {
         Write-Info "Installing via Chocolatey..."
-        choco install nodejs-lts -y
+        choco install nodejs-lts -y 2>$null
         if ($LASTEXITCODE -eq 0) {
             $installed = $true
             Write-Ok "Node.js installed via Chocolatey"
@@ -69,7 +69,6 @@ if ($needsNode) {
 
     # Method 3: Manual download prompt
     if (-not $installed) {
-        Write-Host ""
         Write-Err "Could not install Node.js automatically. Please install manually and re-run this script:`n`n  Download: https://nodejs.org/en/download/`n`n  After installing, reopen PowerShell and run this script again."
     }
 
@@ -101,7 +100,7 @@ try {
 }
 
 if ($needsInstall) {
-    npm install -g openclaw@latest
+    npm install -g openclaw@latest 2>&1 | Write-Host
     if ($LASTEXITCODE -ne 0) {
         Write-Err "OpenClaw installation failed. Please run manually: npm install -g openclaw@latest"
     }
@@ -150,3 +149,12 @@ Write-Host "    2. Start OpenClaw: openclaw" -ForegroundColor Gray
 Write-Host "    3. Add skills (optional): openclaw configure --section skills" -ForegroundColor Gray
 Write-Host "    4. Browse available skills: openclaw skills" -ForegroundColor Gray
 Write-Host ""
+
+} catch {
+    Write-Host ""
+    Write-Host "[ERROR] Script failed: $_" -ForegroundColor Red
+    Write-Host ""
+} finally {
+    Write-Host ""
+    Read-Host "Press Enter to close this window"
+}
