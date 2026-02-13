@@ -169,9 +169,9 @@ MiniMax 是国内领先的 AI 大模型公司，他们的 MiniMax-M2.1 模型提
 
 ## 方法二：白嫖 AWS Bedrock Claude
 
-AWS Bedrock 为新用户提供**最高 $300 免费额度**（注册送 $100 + 完成任务送 $200），可以免费使用 Claude Opus / Sonnet 大约 3-6 个月。这个方法适合**人在海外**的用户（需要海外信用卡和地址）。
+AWS Bedrock 为新用户提供**最高 $200 免费额度**（注册送 $100 + 完成任务送 $100），可以免费使用 Claude Opus / Sonnet 大约 3 个月。这个方法适合**人在海外**的用户（需要海外信用卡和地址）。
 
-### 第 1 步：注册 AWS Bedrock（获得 $100）
+### 第 1 步：注册 AWS 账号（获得 $100）
 
 1. 前往 [AWS 注册页面](https://aws.amazon.com/)，注册新账号
 2. 绑定海外信用卡（会扣 $1 验证，之后退回）
@@ -182,19 +182,28 @@ AWS Bedrock 为新用户提供**最高 $300 免费额度**（注册送 $100 + �
 
 <!-- TODO: 添加 AWS Bedrock $100 额度截图 -->
 
-### 第 2 步：完成 5 个任务获得额外 $200
+### 第 2 步：完成 5 个任务获得额外 $100
 
-完成以下 5 个 AWS 任务，可以额外获得 **$200 免费额度**：
+在 [AWS 控制台首页](https://console.aws.amazon.com/)的 **Explore AWS** 小组件中，完成以下 5 个任务可以额外获得 **$100 免费额度**：
 
-1. **任务 1**：创建一个 S3 存储桶
-2. **任务 2**：部署一个 Lambda 函数
-3. **任务 3**：设置 CloudWatch 监控
-4. **任务 4**：配置 IAM 角色
-5. **任务 5**：使用 Bedrock API 调用一次
+1. **启动 EC2 实例**
+   使用 Amazon EC2 创建一个虚拟机实例（[文档](https://docs.aws.amazon.com/ec2/)）
+
+2. **在 Bedrock Playground 使用基础模型**
+   在 Amazon Bedrock 控制台选择一个 AI 模型并生成回复（[文档](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html)）
+
+3. **设置成本预算**
+   使用 AWS Budgets 创建一个成本预算警报（[文档](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html)）
+
+4. **创建 Lambda Web 应用**
+   使用 AWS Lambda 构建一个简单的无服务器 Web 应用（[文档](https://docs.aws.amazon.com/lambda/)）
+
+5. **创建 RDS 数据库**
+   启动一个 Amazon RDS 或 Aurora 数据库实例（[文档](https://docs.aws.amazon.com/rds/)）
 
 <!-- TODO: 添加任务完成截图 -->
 
-> **提示**：这 5 个任务都很简单，跟着 AWS 控制台的引导操作即可，总共大约 30 分钟完成。
+> **提示**：这 5 个任务都有 AWS 控制台的引导，跟着步骤操作即可，总共大约 30-60 分钟完成。大部分任务会消耗一些免费额度，但远小于获得的 $100 奖励。
 
 ### 第 3 步：在 OpenClaw 中配置 AWS Bedrock
 
@@ -213,11 +222,11 @@ AWS Bedrock 为新用户提供**最高 $300 免费额度**（注册送 $100 + �
 | 项目 | 额度 |
 |------|-----|
 | 注册赠送 | $100（立即可用）|
-| 完成任务赠送 | $200（完成 5 个任务后）|
-| **总计** | **$300** |
+| 完成任务赠送 | $100（完成 5 个任务后）|
+| **总计** | **$200** |
 | 有效期 | 3 个月 |
-| Claude Opus 4.6 | 可用约 3-6 个月 |
-| Claude Sonnet 4.5 | 可用约 6 个月（更省） |
+| Claude Opus 4.6 | 可用约 3 个月 |
+| Claude Sonnet 4.5 | 可用约 3 个月（更省） |
 
 > **注意**：AWS Bedrock 需要海外信用卡和地址，国内用户可能无法注册。国内用户建议选择方法一（MiniMax）或方法三（合租）。
 
