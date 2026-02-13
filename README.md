@@ -5,7 +5,7 @@
 <!-- TODO: Hero 图片（中文文件名） -->
 <!-- ![2026年OpenClaw龙虾AI一键部署教学](image/OpenClaw龙虾AI一键部署教学.png) -->
 
-说实话，我之前一直在找好用的 AI 编程助手，后来发现了 OpenClaw（龙虾AI），直接本地部署，还能免费白嫖 MiniMax 大模型7天。配置过程也很简单，一行命令搞定，不用折腾环境。这篇教程把我踩过的坑都整理好了，照着做5分钟就能跑起来。
+说实话，我之前一直想要一个能真正帮我做事的 AI 助手，后来发现了 OpenClaw（龙虾AI）。它不只是聊天工具，能直接帮你清理邮箱、管理日程、订机票，而且完全本地部署、数据不出本机。最重要的是，还能免费白嫖 MiniMax 大模型7天。配置过程也很简单，一行命令搞定，不用折腾环境。这篇教程把我踩过的坑都整理好了，照着做5分钟就能跑起来。
 
 <blockquote>
 
@@ -28,20 +28,34 @@
 
 ## OpenClaw 龙虾AI 是什么？
 
-[OpenClaw（龙虾AI / ClawsBot）](https://openclaw.ai)是一款**开源**的 AI 编程助手，直接在你的终端里运行，所有数据都在本地，不会上传到任何第三方服务器。
+[OpenClaw（龙虾AI / ClawsBot）](https://openclaw.ai)是一款**开源**的个人 AI 助手，由 PSPDFKit 创始人 Peter Steinberger 开发。它不只是聊天，而是真正能**帮你做事**的 AI：清理邮箱、发送消息、管理日程、订机票、监控市场……所有数据都在本地处理，完全隐私可控。
 
-你可以把它理解为一个**免费的、开源的 Claude Code 替代品**，而且支持接入多种大模型（MiniMax、Claude、GPT、Gemini 等）。
+OpenClaw 通过你**已经在用的聊天工具**工作（WhatsApp、Telegram、Discord、Slack、微信、iMessage 等），也可以在终端和网页中使用。它支持接入多种大模型（MiniMax、Claude、GPT、Gemini 等），拥有 100+ 可扩展技能（AgentSkills），还有持久化记忆系统，能记住你的偏好和上下文。
 
-### OpenClaw vs Claude Code vs Cursor 对比
+### OpenClaw 龙虾AI 的核心优势
 
-| 特性 | OpenClaw 龙虾AI | Claude Code | Cursor |
-|------|----------------|-------------|--------|
-| 价格 | **免费开源** | $20/月（Pro）| $20/月（Pro）|
-| 运行方式 | 本地终端 | 本地终端 | IDE |
-| 模型选择 | 多模型自由切换 | 仅 Claude | 多模型 |
-| 数据隐私 | 数据不出本机 | 云端处理 | 云端处理 |
-| 国内可用 | **支持国内模型** | 需要翻墙 | 需要翻墙 |
-| 开源 | **完全开源** | 否 | 否 |
+| 特性 | OpenClaw 龙虾AI | 传统 AI 助手 |
+|------|----------------|-------------|
+| 价格 | **免费开源** | 大多需要付费订阅 |
+| 使用方式 | **聊天工具（微信/WhatsApp/Telegram）+ 终端 + 网页** | 通常只有网页/App |
+| 能力范围 | **真正执行任务**（发邮件、订机票、管理日程） | 大多只能回答问题 |
+| 模型选择 | **多模型自由切换**（MiniMax、Claude、GPT、Gemini） | 通常绑定单一模型 |
+| 数据隐私 | **数据不出本机** | 大多云端处理 |
+| 国内可用 | **支持国内模型（MiniMax）** | 国外服务需要翻墙 |
+| 可扩展性 | **100+ AgentSkills + 社区技能** | 功能固定 |
+| 记忆系统 | **持久化记忆，跨会话保留上下文** | 大多仅限单次对话 |
+
+### OpenClaw 能做什么？
+
+OpenClaw 不只是聊天，而是真正能**帮你做事**的 AI 助手：
+
+- **📧 邮件管理**：自动清理收件箱、发送邮件、回复消息
+- **📅 日程管理**：管理日历、安排会议、设置提醒
+- **✈️ 生活助手**：订机票、查航班、办理登机手续
+- **🌐 网络自动化**：爬取网站数据、监控市场、研究信息
+- **💻 代码开发**：写代码、Debug、重构、执行命令
+- **📁 文件管理**：整理文件、批量处理、自动化脚本
+- **🔗 跨平台协作**：通过你常用的聊天工具（微信、WhatsApp、Telegram）随时随地使用
 
 <!-- TODO: 添加 OpenClaw 使用截图 -->
 
@@ -103,17 +117,17 @@ MiniMax 是国内领先的 AI 大模型公司，他们的 MiniMax-M2.1 模型提
 
 <!-- TODO: 添加配置向导截图 -->
 
-### MiniMax vs Claude 编程能力对比
+### MiniMax vs Claude 能力对比
 
 | 指标 | MiniMax-M2.1 | Claude Sonnet 4.5 |
 |------|-------------|-------------------|
 | 上下文窗口 | 20万 tokens | 20万 tokens |
 | 最大输出 | 8,192 tokens | 8,192 tokens |
-| 编程能力 | 强 | 非常强 |
+| 综合能力 | 强（支持代码、写作、分析等） | 非常强 |
 | 价格 | **7天免费** | 按量付费 |
 | 国内访问 | **直连，无需翻墙** | 需要翻墙 |
 
-> **我的体验**：MiniMax-M2.1 的编程能力已经很不错了，日常写代码、debug、重构都没问题。如果你是第一次用 AI 编程助手，先白嫖7天体验一下，不满意再换。
+> **我的体验**：MiniMax-M2.1 的能力已经很不错了，日常写代码、处理邮件、分析数据、写文档都没问题。如果你是第一次用 OpenClaw，先白嫖7天体验一下，不满意再换其他模型。
 
 <p align="center"><a href="https://platform.minimax.io">立即注册 MiniMax 免费账号</a></p>
 
@@ -141,9 +155,9 @@ AWS Bedrock 为新用户提供 **$200 免费额度**，可以免费使用 Claude
 
 | 项目 | 额度 |
 |------|-----|
-| 新用户赠送 | $200（2个月有效）|
-| Claude Opus 4.6 | 约可用 1-2 个月 |
-| Claude Sonnet 4.5 | 约可用 3 个月 |
+| 新用户赠送 | $200（3个月有效）|
+| Claude Opus 4.6 | 可用约 3 个月 |
+| Claude Sonnet 4.5 | 可用约 3 个月（更省） |
 
 > **注意**：AWS Bedrock 需要海外信用卡和地址，国内用户可能无法注册。国内用户建议选择方法一（MiniMax）或方法三（合租）。
 
@@ -232,9 +246,9 @@ iwr -useb https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/uni
 
 ## 常见问题
 
-### OpenClaw 龙虾AI 是什么？和 Claude Code 有什么区别？
+### OpenClaw 龙虾AI 是什么？
 
-OpenClaw 是一款开源的 AI 编程助手，功能类似 Claude Code，但完全免费、开源，而且支持接入多种大模型（不限于 Claude）。数据全部在本地处理，隐私性更好。
+OpenClaw 是一款开源的个人 AI 助手，能真正帮你**执行任务**（发邮件、订机票、管理日程、处理文件等），不只是回答问题。它通过你已经在用的聊天工具（微信、WhatsApp、Telegram 等）工作，完全免费、开源，支持接入多种大模型（MiniMax、Claude、GPT、Gemini 等）。数据全部在本地处理，隐私性极好。
 
 ### 国内能用吗？需要翻墙吗？
 
@@ -306,7 +320,7 @@ openclaw onboard
 
 ## 关键词
 
-OpenClaw, 龙虾AI, ClawsBot, MiniMax, Claude, AI编程助手, 一键部署, 免费白嫖, 本地AI, 终端AI助手, MiniMax-M2.1, 开源编程助手, Claude Code 替代品, AI coding assistant, 大模型编程, 国内AI编程, 免费AI编码工具
+OpenClaw, 龙虾AI, ClawsBot, MiniMax, Claude, 个人AI助手, 一键部署, 免费白嫖, 本地AI, AI自动化, MiniMax-M2.1, 开源AI助手, 自主AI代理, AI agent, 大模型助手, 国内AI, 免费AI工具, 聊天AI助手, WhatsApp AI, Telegram AI, Discord AI
 
 ---
 
