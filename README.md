@@ -11,9 +11,9 @@
 
 * **方法一：免费白嫖 MiniMax 7天（适合想先体验的用户）**：MiniMax 提供7天免费试用，注册即可使用，无需信用卡。20万 token 上下文窗口，编程能力很强。查看更多：[免费白嫖 MiniMax](#方法一免费白嫖-minimax7天试用)
 
-* **方法二：接入 Claude（适合已有 API Key 的用户）**：如果你已经有 Anthropic API Key，可以直接在 OpenClaw 中使用 Claude Opus / Sonnet，体验和 Claude Code 一样。查看更多：[接入 Claude](#方法二接入-claude)
+* **方法二：白嫖 AWS Bedrock Claude（适合人在海外的用户）**：AWS Bedrock 新用户赠送 $200 免费额度，可以免费使用 Claude Opus / Sonnet 3个月。查看更多：[白嫖 AWS Bedrock](#方法二白嫖-aws-bedrock-claude)
 
-* **方法三：其他免费/低价模型（适合长期免费用户）**：通过 OpenRouter 等平台接入免费模型，或者使用其他低价大模型。查看更多：[其他模型](#方法三其他免费低价模型)
+* **方法三：通过合租/拼车降低 Claude 价格（适合长期使用的用户）**：通过第三方平台合租 Claude Pro 或 Claude Code 订阅，价格低至原价的 1/5。查看更多：[Claude 合租拼车](#方法三通过合租拼车降低-claude-价格)
 
 </blockquote>
 
@@ -112,38 +112,65 @@ MiniMax 是国内领先的 AI 大模型公司，他们的 MiniMax-M2.1 模型提
 
 ---
 
-## 方法二：接入 Claude
+## 方法二：白嫖 AWS Bedrock Claude
 
-如果你已经有 Anthropic API Key，可以在 OpenClaw 配置向导中选择 **Anthropic**，直接使用 Claude Opus 4.6 / Sonnet 4.5 等模型。
+AWS Bedrock 为新用户提供 **$200 免费额度**，可以免费使用 Claude Opus / Sonnet 大约 3 个月。这个方法适合**人在海外**的用户（需要海外信用卡和地址）。
 
-### 获取 Claude API Key
+### 注册 AWS Bedrock
 
-1. 前往 [console.anthropic.com](https://console.anthropic.com)
-2. 注册账号并添加付款方式
-3. 在 **API Keys** 中创建新密钥
+1. 前往 [AWS 注册页面](https://aws.amazon.com/)，注册新账号
+2. 绑定海外信用卡（会扣 $1 验证，之后退回）
+3. 进入 [AWS Bedrock 控制台](https://console.aws.amazon.com/bedrock/)
+4. 开通 Claude 模型访问权限（Model access）
 
-### 价格参考
+### 在 OpenClaw 中配置 AWS Bedrock
 
-| 模型 | 输入价格 | 输出价格 |
-|------|---------|---------|
-| Claude Opus 4.6 | $15 / 百万 tokens | $75 / 百万 tokens |
-| Claude Sonnet 4.5 | $3 / 百万 tokens | $15 / 百万 tokens |
-| Claude Haiku 4.5 | $0.80 / 百万 tokens | $4 / 百万 tokens |
+配置向导中选择 **AWS Bedrock**，填入：
+- AWS Access Key ID
+- AWS Secret Access Key
+- AWS Region（推荐 `us-east-1`）
 
-> **提示**：日常编程用 Sonnet 4.5 性价比最高，遇到复杂架构问题再切换到 Opus。
+### 免费额度说明
+
+| 项目 | 额度 |
+|------|-----|
+| 新用户赠送 | $200（2个月有效）|
+| Claude Opus 4.6 | 约可用 1-2 个月 |
+| Claude Sonnet 4.5 | 约可用 3 个月 |
+
+> **注意**：AWS Bedrock 需要海外信用卡和地址，国内用户可能无法注册。国内用户建议选择方法一（MiniMax）或方法三（合租）。
 
 ---
 
-## 方法三：其他免费/低价模型
+## 方法三：通过合租/拼车降低 Claude 价格
 
-OpenClaw 支持接入多种模型，配置向导中可以选择：
+如果你需要长期使用 Claude，但觉得官方 API 太贵，可以通过第三方平台**合租 Claude Pro** 或 **Claude Code 订阅**，价格只有原价的 1/5 左右。
 
-| 服务商 | 免费额度 | 适合场景 |
-|--------|---------|---------|
-| OpenRouter | 部分模型免费 | 想要多模型切换 |
-| Google Gemini | 免费额度 | 日常使用 |
-| xAI (Grok) | 免费额度 | 尝鲜 |
-| Moonshot (Kimi) | 免费额度 | 国内直连 |
+### 什么是 Claude 合租/拼车？
+
+多个用户共享一个 Claude Pro 或 Claude Code 订阅账号，分摊费用。第三方平台负责管理账号和分配使用额度，每个用户都能正常使用 Claude，但价格大幅降低。
+
+### 推荐平台
+
+| 平台 | Claude Code 价格 | Claude Pro 价格 | 特点 |
+|------|----------------|----------------|------|
+| 星际放映厅 | 14元/月起 | 20元/月起 | 有备案，支持发票 |
+| 其他平台 | 10-30元/月 | 15-40元/月 | 价格波动大 |
+
+> **风险提示**：合租账号存在以下风险：
+> - 可能被官方封号（虽然概率较低）
+> - 平台跑路风险
+> - 使用额度限制
+> - 不适合企业/商业用途
+
+### 如何在 OpenClaw 中使用合租账号？
+
+合租平台通常提供 API Key 或 共享账号，你可以：
+
+1. 如果提供 **API Key**：在 OpenClaw 配置向导中选择 **Anthropic**，填入平台提供的 API Key
+2. 如果提供 **共享账号**：联系平台客服，询问是否支持 OpenClaw 接入
+
+> **我的建议**：合租适合轻度使用，如果你是重度用户或企业用途，建议选择方法二（AWS Bedrock）或直接购买 Anthropic 官方 API。
 
 ---
 
