@@ -85,7 +85,45 @@ if ($needsNode) {
 }
 
 # ─────────────────────────────────────────────
-# Step 2: Install OpenClaw
+# Step 2: Check / Install Git
+# ─────────────────────────────────────────────
+Write-Info "Checking Git..."
+
+if (Get-Command git -ErrorAction SilentlyContinue) {
+    Write-Ok "Found Git."
+} else {
+    Write-Info "Installing Git (required by OpenClaw dependencies)..."
+
+    $gitInstalled = $false
+
+    if (-not $gitInstalled -and (Get-Command winget -ErrorAction SilentlyContinue)) {
+        Write-Info "Installing Git via winget..."
+        winget install Git.Git --accept-package-agreements --accept-source-agreements 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            $gitInstalled = $true
+            Write-Ok "Git installed via winget"
+        }
+    }
+
+    if (-not $gitInstalled -and (Get-Command choco -ErrorAction SilentlyContinue)) {
+        Write-Info "Installing Git via Chocolatey..."
+        choco install git -y 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            $gitInstalled = $true
+            Write-Ok "Git installed via Chocolatey"
+        }
+    }
+
+    if (-not $gitInstalled) {
+        Write-Err "Could not install Git automatically. Please install manually and re-run this script:`n`n  Download: https://git-scm.com/download/win`n`n  After installing, reopen PowerShell and run this script again."
+    }
+
+    # Refresh PATH
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+}
+
+# ─────────────────────────────────────────────
+# Step 3: Install OpenClaw
 # ─────────────────────────────────────────────
 Write-Info "Checking OpenClaw..."
 

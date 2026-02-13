@@ -85,7 +85,45 @@ if ($needsNode) {
 }
 
 # ─────────────────────────────────────────────
-# 步骤 2: 安装 OpenClaw
+# 步骤 2: 检查 / 安装 Git
+# ─────────────────────────────────────────────
+Write-Info "正在检查 Git..."
+
+if (Get-Command git -ErrorAction SilentlyContinue) {
+    Write-Ok "已找到 Git。"
+} else {
+    Write-Info "正在安装 Git（OpenClaw 依赖需要）..."
+
+    $gitInstalled = $false
+
+    if (-not $gitInstalled -and (Get-Command winget -ErrorAction SilentlyContinue)) {
+        Write-Info "使用 winget 安装 Git..."
+        winget install Git.Git --accept-package-agreements --accept-source-agreements 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            $gitInstalled = $true
+            Write-Ok "Git 已通过 winget 安装"
+        }
+    }
+
+    if (-not $gitInstalled -and (Get-Command choco -ErrorAction SilentlyContinue)) {
+        Write-Info "使用 Chocolatey 安装 Git..."
+        choco install git -y 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            $gitInstalled = $true
+            Write-Ok "Git 已通过 Chocolatey 安装"
+        }
+    }
+
+    if (-not $gitInstalled) {
+        Write-Err "无法自动安装 Git。请手动下载安装：`n`n  下载地址：https://git-scm.com/download/win`n`n  安装完成后重新打开 PowerShell 运行此脚本。"
+    }
+
+    # 刷新 PATH
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+}
+
+# ─────────────────────────────────────────────
+# 步骤 3: 安装 OpenClaw
 # ─────────────────────────────────────────────
 Write-Info "正在检查 OpenClaw..."
 
