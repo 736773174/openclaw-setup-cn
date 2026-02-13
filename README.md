@@ -185,25 +185,63 @@ AWS Bedrock 为新用户提供**最高 $200 免费额度**（注册送 $100 + �
 - 5 个任务的详细操作教程（附截图）
 - 如何获得 $200 免费额度
 
-### IAM 权限前置条件
+### 获取 AWS Access Key
 
-配置 AWS Bedrock 之前，确保你的 IAM 用户/角色具有以下权限：
+配置脚本需要 AWS Access Key ID 和 Secret Access Key。按以下步骤创建：
 
-- `bedrock:InvokeModel`
-- `bedrock:InvokeModelWithResponseStream`
+#### 1. 创建 IAM 用户
 
-或者直接使用托管策略：**AmazonBedrockFullAccess**
+进入 [IAM 控制台 → 用户](https://console.aws.amazon.com/iam/home#/users)，点击右上角 **创建用户**。
+
+![IAM 用户列表](images/create-iam-user.png)
+
+#### 2. 输入用户名
+
+输入用户名（如 `BedrockAPIKey`），**不勾选**控制台访问，点击下一步。
+
+![输入用户名](images/create-user-step-1.png)
+
+#### 3. 设置权限
+
+选择 **直接附加策略**，搜索 `bedrock`，勾选 **AmazonBedrockFullAccess**，点击下一步并创建用户。
+
+![设置权限](images/create-user-step2.png)
+
+#### 4. 点击进入刚创建的用户
+
+回到用户列表，点击刚创建的用户名。
+
+![点击用户名](images/step-3-click-on-created-user.png)
+
+#### 5. 创建访问密钥
+
+在用户详情页，点击右上角的 **创建访问密钥**。
+
+![创建访问密钥](images/step-4-create-access-key.png)
+
+#### 6. 选择使用场景
+
+选择 **在 AWS 之外运行的应用程序**，点击下一步。
+
+![选择使用场景](images/step-5-use-3rd-party-app.png)
+
+#### 7. 复制 Access Key
+
+复制 **Access Key ID** 和 **Secret Access Key**，保存好（Secret Key 只显示一次）。
+
+![复制密钥](images/step6-copy-access-secret-key.png)
 
 > **重要**：还需要在 [AWS Bedrock 控制台](https://console.aws.amazon.com/bedrock/home#/modelaccess) 中**启用模型访问权限**，否则即使 IAM 权限正确也无法调用模型。
 
 ### 在 OpenClaw 中配置 AWS Bedrock
 
+拿到 Access Key 后，运行一键配置脚本：
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/736773174/openclaw-setup-cn/main/configure-aws-bedrock.sh | bash
 ```
 
-脚本会自动完成以下操作：
-- 提示输入 AWS Access Key ID、Secret Access Key 和区域
+脚本会提示你输入上一步获取的 Access Key ID 和 Secret Access Key，然后自动完成：
 - 创建 `~/.openclaw/.env` 环境变量文件
 - 生成 `~/.openclaw/openclaw.json` 配置文件（含 4 个 Claude 模型）
 - 重启 OpenClaw Gateway
