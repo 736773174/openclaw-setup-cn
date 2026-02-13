@@ -178,10 +178,94 @@ AWS Bedrock 为新用户提供**最高 $200 免费额度**（注册送 $100 + �
 | **总计** | **$200** |
 | 有效期 | 3 个月 |
 
+### AWS 注册和任务完成
+
 **详细教程**：查看我们的 [Claude Code 安装 + AWS $200 白嫖完整指南](https://github.com/736773174/claude-code-free)，包含：
 - 注册 AWS 账号的完整步骤
 - 5 个任务的详细操作教程（附截图）
-- 如何在 OpenClaw 中配置 AWS Bedrock
+- 如何获得 $200 免费额度
+
+### 在 OpenClaw 中配置 AWS Bedrock
+
+完成 AWS 注册和任务后，按以下步骤配置 OpenClaw：
+
+#### 1. 生成 AWS Bedrock Bearer Token
+
+1. 进入 [AWS Bedrock API Keys 控制台](https://console.aws.amazon.com/bedrock/home#/api-keys)
+2. 点击 **Create API key**
+3. 选择有效期（30 天或自定义）
+4. **复制保存** Bearer Token
+
+<!-- TODO: 添加 Bedrock API Key 截图 -->
+
+#### 2. 编辑 OpenClaw 配置文件
+
+```bash
+nano ~/.openclaw/openclaw.json
+```
+
+添加以下配置（如果文件已存在，合并到现有内容中）：
+
+```json
+{
+  "mode": "merge",
+  "providers": {
+    "bedrock": {
+      "baseUrl": "https://bedrock-runtime.us-east-1.amazonaws.com",
+      "apiKey": "${AWS_BEARER_TOKEN_BEDROCK}",
+      "api": "bedrock-converse-stream",
+      "auth": "api-key",
+      "authHeader": true,
+      "models": [
+        {
+          "id": "anthropic.claude-opus-4-6-v1:0",
+          "name": "Claude Opus 4.6",
+          "reasoning": true,
+          "input": ["text"],
+          "cost": {
+            "input": 0.015,
+            "output": 0.075,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 200000,
+          "maxTokens": 8192
+        }
+      ]
+    }
+  }
+}
+```
+
+#### 3. 设置环境变量
+
+在 `~/.openclaw/.env` 文件中添加：
+
+```bash
+AWS_BEARER_TOKEN_BEDROCK=你的BearerToken
+```
+
+或者在 `~/.zshrc` / `~/.bashrc` 中添加：
+
+```bash
+export AWS_BEARER_TOKEN_BEDROCK="你的BearerToken"
+```
+
+#### 4. 重启 OpenClaw 网关
+
+```bash
+openclaw gateway restart
+```
+
+#### 5. 验证配置
+
+```bash
+openclaw models status
+```
+
+如果配置成功，你应该能看到 `Claude Opus 4.6` 在可用模型列表中。
+
+> **配置参考**：完整配置示例请查看 [pahud 的 Gist](https://gist.github.com/pahud/8965bfeec441225009abfa96f4751f48)
 
 > **注意**：AWS Bedrock 需要海外信用卡和地址，国内用户可能无法注册。国内用户建议选择方法一（MiniMax）或方法三（合租）。
 
